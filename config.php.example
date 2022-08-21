@@ -1,0 +1,72 @@
+<?php
+
+$url = "http://localhost/undanganonline";
+$title="Undangan Pernikahan";
+$subtitle="Fulanah &amp; Fulan";
+$countdown = "2022-09-11 09:00:00";
+$google_map_embed_link = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16331.389352212207!2d106.82818581363799!3d-6.182058787000629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sNational%20Monument!5e0!3m2!1sen!2sid!4v1661057628057!5m2!1sen!2sid" width="800" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+$backsound_music = 'https://www.chosic.com/wp-content/uploads/2021/11/Beautiful-Piano.mp3';
+
+$images = [
+    'popup'=>"images/couple-1.jpg",
+    'bride'=>"images/bride.jpg",
+    'groom'=>"images/groom.jpg",
+];
+
+$hero = [
+    'image'=>'images/img_bg_1.jpg',
+    'title'=>"Fulanah &amp; Fulan",
+    'desc'=>"Menuju Pernikahan yang Sakinah Mawaddah Warahmah",
+    'link_url'=>'https://calendar.google.com/calendar/',
+    'link_button'=>'Buat Pengingat'
+];
+
+$bride = [
+    'name'=>"Fulanah binti Fulan",
+    'desc'=>"Putri pertama dari Bpk. Fulan dan Ibu. Fulanah",
+];
+$groom = [
+    'name'=>"Fulan bin Fulan",
+    'desc'=>"Putra ketiga dari Bpk. Fulan dan Ibu. Fulanah",
+];
+
+$event1 = [
+    'title'=>'Akad Nikah',
+    'time'=>'09.00-11.00',
+    'date'=>'Minggu, 1<br/>Januari 2022',
+    'place'=>'Gedung Merah Putih, Jl. Melati Kebon Pala, Jakarta',
+];
+$event2 = [
+    'title'=>'Resepsi',
+    'time'=>'11.00-selesai',
+    'date'=>'Minggu, 1<br/>Januari 2022',
+    'place'=>'Gedung Merah Putih, Jl. Melati Kebon Pala, Jakarta',
+];
+$timelines = [
+    [
+        'image'=>'images/img_bg_1.jpg',
+        'title'=>'Story 1',
+        'date'=>'1 Januari 2021',
+        'desc'=>'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum sapien nec urna tincidunt eleifend. Cras congue imperdiet purus, et pharetra tellus ultricies hendrerit. Donec facilisis augue sed feugiat euismod. Donec dapibus mattis porttitor. Phasellus vitae ex id nisi pellentesque elementum fermentum id lacus. Donec bibendum ante eu elit imperdiet, in dignissim libero accumsan. Morbi sit amet neque viverra, molestie quam sit amet, blandit metus.'
+    ],
+    [
+        'image'=>'images/img_bg_2.jpg',
+        'title'=>'Story 2',
+        'date'=>'1 Mei 2021',
+        'desc'=>'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed pellentesque lacus vitae leo interdum scelerisque. Quisque placerat magna ut libero blandit consectetur. Aenean eu dapibus lacus. Proin porta tortor nec sollicitudin consectetur. Nullam mollis nisi non lobortis rutrum. Aenean faucibus sollicitudin pretium.'
+    ],
+    [
+        'image'=>'images/img_bg_3.jpg',
+        'title'=>'Story 3',
+        'date'=>'1 September 2021',
+        'desc'=>'Nam lobortis justo ultrices turpis pharetra, vitae sodales velit porta. Etiam ipsum erat, maximus vel lectus a, pellentesque commodo nisi. Cras malesuada molestie metus, sed volutpat dolor bibendum ac. Proin lobortis est nisi, non molestie massa tincidunt ut. Pellentesque sit amet eros ut sem mollis volutpat. Ut varius nisi nec sollicitudin elementum.'
+    ],
+];
+$galleries = [
+    'images/gallery-1.jpg',
+    'images/gallery-2.jpg',
+    'images/gallery-3.jpg',
+    'images/gallery-4.jpg',
+    'images/gallery-5.jpg',
+    'images/gallery-6.jpg',
+];
