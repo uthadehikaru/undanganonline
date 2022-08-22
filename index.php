@@ -12,7 +12,7 @@ $count = count($messages);
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo $title ?></title>
+	<title><?php echo $title ?> <?php echo $subtitle ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="<?php echo $subtitle; ?>" />
 	<meta name="keywords" content="<?php echo $subtitle; ?>" />
@@ -356,7 +356,7 @@ $count = count($messages);
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<audio id="backsound" autoplay loop controls>
-					<source src="<?php echo $backsound_music; ?>" type="audio/mp3">
+					<source src="<?php echo $backsound_music; ?>" type="audio/<?php echo substr($backsound_music, strlen($backsound_music)-3, 3); ?>">
 					Your browser does not support the audio element.
 					</audio>
 					<p>
@@ -374,32 +374,75 @@ $count = count($messages);
 	</div>
 
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog" data-keyboard=false>
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<?php if(isset($_GET['message'])): ?>
-			<div class="modal-body text-center">
-				<h1 class="title">Terima Kasih</h1>
-				<h3>atas doa dan ucapan yang diberikan.</h3>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">Tutup</button>
-			</div>
-			<?php else: ?>
-			<div class="modal-body text-center">
-				<h1 class="title"><?php echo $title ?></h1>
-				<h3 class="title"><?php echo $subtitle ?></h3>
-				<?php if(isset($_GET['to']) && isset($_GET['place'])) { ?>
-				<p><?php echo clean_text($_GET['to']) ?> <br/>di<br/> <?php echo clean_text($_GET['place']) ?></p>
-				<p class="disclaimer">* mohon maaf jika ada kesalahan penulisan nama atau gelar</p>
-				<?php } ?>
-				<img src="<?php echo $images['popup'] ?>" class="img-responsive"/>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">Buka Undangan</button>
-			</div>
-			<?php endif; ?>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<?php if(isset($_GET['message'])): ?>
+				<div class="modal-body text-center">
+					<h1 class="title">Terima Kasih</h1>
+					<h3>atas doa dan ucapan yang diberikan.</h3>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">Tutup</button>
+				</div>
+				<?php else: ?>
+				<div class="modal-body text-center">
+					<h1 class="title"><?php echo $title ?></h1>
+					<h3 class="title"><?php echo $subtitle ?></h3>
+					<?php if(isset($_GET['to']) && isset($_GET['place'])) { ?>
+					<p><?php echo clean_text($_GET['to']) ?> <br/>di<br/> <?php echo clean_text($_GET['place']) ?></p>
+					<p class="disclaimer">* mohon maaf jika ada kesalahan penulisan nama atau gelar</p>
+					<?php } ?>
+					<img src="<?php echo $images['popup'] ?>" class="img-responsive"/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary mx-auto" data-dismiss="modal">Buka Undangan</button>
+				</div>
+				<?php endif; ?>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" data-keyboard=false>
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">Berikan doa dan ucapan terbaik untuk kami</h3>
+				</div>
+				<div class="modal-body">
+					<form class="form" action="store.php" method="post">
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Nama</label>
+							<div class="col-sm-10">
+							<input type="text" class="form-control" id="name" name="name"
+							placeholder="Nama Lengkap">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="place" class="col-sm-2 col-form-label">Tempat</label>
+							<div class="col-sm-10">
+							<input type="text" class="form-control" id="place" name="place"
+							placeholder="Kota/Instansi">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="message" class="col-sm-2 col-form-label">Pesan</label>
+							<div class="col-sm-10">
+							<textarea class="form-control" id="message" name="message"
+							placeholder="Tuliskan doa dan ucapan yang ingin anda sampaikan"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-8">
+								<button type="submit" class="btn btn-primary btn-block">Kirim</button>
+							</div>
+							<div class="col-md-4">
+								<button type="button" class="btn btn-default btn-block" data-dismiss="modal" aria-label="Close">Tutup</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	
 	<!-- jQuery -->
@@ -441,10 +484,17 @@ $count = count($messages);
 			$('#modal').modal('toggle')
 		});
 
+		function messageAlert() {
+			$('#messageModal').modal('toggle')
+		}
+
 		$('#modal').on('hidden.bs.modal', function (e) {
 			const audio = document.querySelector("audio");
 			audio.volume = 0.5;
 			audio.play();
+			<?php if(!isset($_GET['message'])): ?>
+				setTimeout(messageAlert, 10000)
+			<?php endif; ?>
 		})
 	</script>
 	</body>
